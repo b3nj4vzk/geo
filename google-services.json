@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "811348120906",
+    "project_id": "registro-6582c",
+    "storage_bucket": "registro-6582c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811348120906:android:7442f6937f9b5f2f841db3",
+        "android_client_info": {
+          "package_name": "personal.mio.ultimoo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpyMuVSMkf9aJVvNYRvLmPhAf4wxOYx_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

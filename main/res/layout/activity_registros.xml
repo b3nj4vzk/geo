@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#11111B"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nueva incidencia"
+            android:textColor="#B69AFF"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:text="Completa los datos de la incidencia."
+            android:textColor="#B6B5C9"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Título de la incidencia"
+            android:inputType="textCapSentences"
+            android:minHeight="55dp"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B6B5C9"
+            android:backgroundTint="#8B5CF6" />
+
+        <EditText
+            android:id="@+id/edtDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:hint="Descripción"
+            android:inputType="textCapSentences|textMultiLine"
+            android:minHeight="100dp"
+            android:gravity="top"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B6B5C9"
+            android:backgroundTint="#8B5CF6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Categoría"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/spnCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:backgroundTint="#8B5CF6" />
+
+        <EditText
+            android:id="@+id/edtFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:hint="Fecha "
+            android:inputType="date"
+            android:minHeight="55dp"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B6B5C9"
+            android:backgroundTint="#8B5CF6" />
+
+        <EditText
+            android:id="@+id/edtHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hora"
+            android:inputType="time"
+            android:minHeight="55dp"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B6B5C9"
+            android:backgroundTint="#8B5CF6" />
+
+        <TextView
+            android:id="@+id/txtCoordenadas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="14dp"
+            android:background="#202031"
+            android:text="Latitud: pendiente\nLongitud: pendiente"
+            android:textColor="#B6B5C9"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnObtenerGPS"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:text="Obtener ubicación GPS"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#514078" />
+
+        <Button
+            android:id="@+id/btnGuardarIncidencia"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="14dp"
+            android:text="Guardar incidencia"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#8B5CF6" />
+        <Button
+            android:id="@+id/btnVerIncidencias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ver incidencias"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+</ScrollView>
