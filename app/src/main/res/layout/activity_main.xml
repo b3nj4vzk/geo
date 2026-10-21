@@ -1,150 +1,102 @@
-package personal.mio.ultimoo;
-import android.os.Bundle;
-import android.widget.Toast;
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#11111B"
+    android:padding="24dp">
 
-import androidx.appcompat.app.AppCompatActivity;
+    <TextView
+        android:id="@+id/txtLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GeoRegistro"
+        android:textColor="#B69AFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
+    <TextView
+        android:id="@+id/txtBienvenida"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="¿Qué deseas hacer?"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-import org.osmdroid.config.Configuration;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.Marker;
+    <TextView
+        android:id="@+id/txtDescripcion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Registra incidencias y consulta los lugares donde ocurren."
+        android:textColor="#B6B5C9"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/txtBienvenida"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp" />
 
-public class mapa extends AppCompatActivity {
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="＋  Registrar incidencia"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#8B5CF6"
+        app:layout_constraintTop_toBottomOf="@id/txtDescripcion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="35dp" />
 
-    private MapView mapa;
-    private FirebaseFirestore db;
+    <Button
+        android:id="@+id/btnHistorial"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="☷  Ver incidencias"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#28213D"
+        app:layout_constraintTop_toBottomOf="@id/btnRegistrar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    <Button
+        android:id="@+id/btnMapa"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="⌖  Ver mapa"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#28213D"
+        app:layout_constraintTop_toBottomOf="@id/btnHistorial"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
-        Configuration.getInstance().setUserAgentValue(getPackageName());
+    <TextView
+        android:id="@+id/txtPie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tus registros, organizados en un solo lugar."
+        android:textColor="#B6B5C9"
+        android:textSize="12sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="12dp" />
 
-        setContentView(R.layout.activity_mapa);
-
-        mapa = findViewById(R.id.mapa);
-        db = FirebaseFirestore.getInstance();
-
-        mapa.setMultiTouchControls(true);
-
-        GeoPoint inicio = new GeoPoint(-36.8201, -73.0444);
-
-        mapa.getController().setZoom(12.0);
-        mapa.getController().setCenter(inicio);
-
-        cargarIncidencias();
-    }
-
-    private void cargarIncidencias() {
-        db.collection("incidencias")
-                .get()
-                .addOnSuccessListener(resultado -> {
-
-                    int cantidad = 0;
-                    GeoPoint primeraIncidencia = null;
-
-                    for (QueryDocumentSnapshot documento : resultado) {
-
-                        Double latitud = obtenerCoordenada(documento, "latitud");
-                        Double longitud = obtenerCoordenada(documento, "longitud");
-
-                        if (latitud == null || longitud == null) {
-                            continue;
-                        }
-
-                        if (latitud < -90 || latitud > 90 ||
-                                longitud < -180 || longitud > 180) {
-                            continue;
-                        }
-
-                        String titulo = documento.getString("titulo");
-                        String descripcion = documento.getString("descripcion");
-
-                        GeoPoint ubicacion = new GeoPoint(latitud, longitud);
-
-                        Marker marcador = new Marker(mapa);
-                        marcador.setPosition(ubicacion);
-                        marcador.setAnchor(
-                                Marker.ANCHOR_CENTER,
-                                Marker.ANCHOR_BOTTOM
-                        );
-                        marcador.setTitle(
-                                titulo != null ? titulo : "Incidencia"
-                        );
-                        marcador.setSnippet(
-                                descripcion != null ? descripcion : ""
-                        );
-
-                        mapa.getOverlays().add(marcador);
-
-                        if (primeraIncidencia == null) {
-                            primeraIncidencia = ubicacion;
-                        }
-
-                        cantidad++;
-                    }
-
-                    if (primeraIncidencia != null) {
-                        mapa.getController().setZoom(15.0);
-                        mapa.getController().animateTo(primeraIncidencia);
-                    }
-
-                    mapa.invalidate();
-
-                    Toast.makeText(
-                            mapa.this,
-                            "Incidencias ubicadas en el mapa: " + cantidad,
-                            Toast.LENGTH_LONG
-                    ).show();
-                })
-                .addOnFailureListener(error -> {
-                    Toast.makeText(
-                            mapa.this,
-                            "Error al cargar incidencias: " + error.getMessage(),
-                            Toast.LENGTH_LONG
-                    ).show();
-                });
-    }
-
-    private Double obtenerCoordenada(
-            QueryDocumentSnapshot documento,
-            String campo
-    ) {
-        Object valor = documento.get(campo);
-
-        if (valor instanceof Number) {
-            return ((Number) valor).doubleValue();
-        }
-
-        if (valor instanceof String) {
-            try {
-                return Double.parseDouble((String) valor);
-            } catch (NumberFormatException e) {
-                return null;
-            }
-        }
-
-        return null;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (mapa != null) {
-            mapa.onResume();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        if (mapa != null) {
-            mapa.onPause();
-        }
-    }
-}
+</androidx.constraintlayout.widget.ConstraintLayout>
