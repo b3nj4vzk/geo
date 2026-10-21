@@ -1,23 +1,12 @@
-esta es una aplicacion donde se puede registar y mirar la incidencias en un mapa
+1. Herramienta utilizada
+Se utilizó ChatGPT, desarrollado por OpenAI, como herramienta de apoyo durante el desarrollo de GeoRegistro.
 
-Funcionalidades
+2. Finalidad del uso
+se utilizó para resolver dudas de programación en Java y Android Studio, comprender errores, recibir orientación sobre la conexión con Firebase Firestore y mejorar el funcionamiento de las pantallas de la aplicación.
 
-Registrar incidencias con título, descripción y categoría
-Guardar los registros en Firebase Firestore
-Consultar la lista de incidencias guardadas
-Visualizar las incidencias en un mapa usando OpenStreetMap
-Mostrar la ubicación de las incidencias mediante marcadores
-
-lo usado fue 
-
-Android Studio
-Java
-Firebase Firestore
-OpenStreetMap
-XML para las interface
-
-Pruebas realizadas
-
-Registro de incidencias
-Consulta de incidencias guardadas
-Visualización de incidencias en el mapa
+consultas realizadas
+Cómo guardar incidencias en Firebase Firestore desde Android Studio?
+Cómo mostrar los registros guardados en una lista?
+Cómo solucionar errores de conexión y permisos de Firestore?
+Cómo implementar y mostrar un mapa con OpenStreetMap?
+Cómo preparar el proyecto para subirlo a GitHub?
